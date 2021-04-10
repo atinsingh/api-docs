@@ -21,7 +21,7 @@ public class Student {
     private String firstName;
     private String lastName;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Course> courses;
 
 }

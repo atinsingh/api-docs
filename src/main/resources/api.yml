@@ -5,7 +5,7 @@ info:
   version: 0.0.1
   contact:
     name: Atin Singh
-    email: atin@pragra.co
+    email: atin@pragra.com
 tags:
   - name: Student
     description: ''
@@ -38,8 +38,6 @@ paths:
           description: server error
           schema:
             $ref: '#/definitions/Error'
-
-
     get:
       tags:
         - Student
@@ -49,37 +47,61 @@ paths:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/StudentModel'
+            type: array
+            items:
+              $ref: '#/definitions/StudentModel'
 
+  /student/{studentId}:
+    get:
+      tags:
+        - Student
+      summary: get all student
+      description: gets all the student from database
+      parameters:
+        - in: path
+          name: studentId
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/StudentModel'
 definitions:
   StudentModel:
     description: Model describing student
     properties:
+      id:
+        type: integer
+        format: int64
+        example: 123322
+      firstname:
+        type: string
+        example: Atin
+      lastName:
+        type: string
+        example: Singh
+      courses:
+        type: array
+        items:
+          $ref: '#/definitions/CourseModel'
+  CourseModel:
+    description: Course Details student has taken
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 144
+      uuid:
+        type: string
+        example: '4d491330-46d5-47e9-9196-d60d61b31c5e'
       name:
         type: string
-        example: Atin Singh
-      age:
-        type: integer
-        format: int32
-      address:
-        type: object
-        $ref: '#/definitions/Address'
-
-  Address:
-    description: Address of the student
-    properties:
-      streetNo:
-        type: integer
-        format: int32
-        example: 5380
-      streetName:
+        example: 'Java Full Stack'
+      description:
         type: string
-        maxLength: 100
-        minimum: 5
-        example: Bushelgrove circle
-      type:
-        enum: [PRIMARY, SECONDAY]
-
+        example: Comprehensive Java Learning
   Error:
     description: represent an Error
     properties:
@@ -94,4 +116,3 @@ definitions:
       description:
         type: string
         description: Description of the error
-

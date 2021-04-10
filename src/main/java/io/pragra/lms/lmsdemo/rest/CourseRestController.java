@@ -24,11 +24,7 @@ public class CourseRestController {
      * This will return all courses
      */
 
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "OK", response =Course.class),
-            @ApiResponse(code = 400, message = "Not Found", response = CourseNotFoundException.class)
-    }
-    )
+
     @GetMapping("/course")
     public ResponseEntity<List<Course>> getAllCourse() {
         return ResponseEntity.ok().body(courseService.getAllCourse());
