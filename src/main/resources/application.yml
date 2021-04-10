@@ -5,4 +5,4 @@ spring:
     name: PragraLMS
   web:
     resources:
-      static-locations: classpath:/template/static
+      static-locations: classpath:templates/static
