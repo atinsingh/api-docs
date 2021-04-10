@@ -3,3 +3,6 @@ spring:
     active: dev,swagger
   application:
     name: PragraLMS
+  web:
+    resources:
+      static-locations: classpath:/template/static

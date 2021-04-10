@@ -8,10 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -28,6 +26,13 @@ public class Course extends BaseEntity {
     private String uuid;
 
     @ApiModelProperty(name = "courseName", notes = "name of course", example = "java full stack")
-
     private String courseName;
+
+    private String courseDescription;
+
+    private String imageName;
+
+    @ManyToMany
+    private List<Student> students;
+
 }

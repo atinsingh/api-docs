@@ -23,9 +23,25 @@ public class LmsDemoApplication {
     @Bean
     CommandLineRunner runner() {
         return args -> {
-          service.createCourse(Course.builder().courseName("JAVA").uuid(UUID.randomUUID().toString()).build());
-          service.createCourse(Course.builder().courseName("DevOps").uuid(UUID.randomUUID().toString()).build());
-          service.createCourse(Course.builder().courseName("Automation").uuid(UUID.randomUUID().toString()).build());
+          service.createCourse(
+                  Course.builder()
+                          .courseName("JAVA")
+                          .courseDescription("Awesome Java Program, learn from novice to Ninja")
+                          .uuid(UUID.randomUUID().toString())
+                          .imageName("java.jpeg")
+                          .build());
+
+          service.createCourse(Course.builder()
+                  .courseName("DevOps")
+                  .courseDescription("All Good course")
+                  .uuid(UUID.randomUUID().toString())
+                  .imageName("devops.jpeg")
+                  .build());
+          service.createCourse(Course.builder()
+                  .courseName("Automation")
+                  .uuid(UUID.randomUUID().toString())
+                  .imageName("automation.jpeg")
+                  .build());
         };
     }
 

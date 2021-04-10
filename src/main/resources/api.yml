@@ -1,0 +1,97 @@
+swagger: '2.0'
+info:
+  title: Student API
+  description: Dummy API to learn the document first Appaocja.
+  version: 0.0.1
+  contact:
+    name: Atin Singh
+    email: atin@pragra.co
+tags:
+  - name: Student
+    description: ''
+host: localhost:8080
+basePath: /api
+schemes:
+  - http
+paths:
+  /student:
+    post:
+      tags:
+        - Student
+      summary: create a student
+      description: create student for given values
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/StudentModel'
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref : '#/definitions/StudentModel'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        503:
+          description: server error
+          schema:
+            $ref: '#/definitions/Error'
+
+
+    get:
+      tags:
+        - Student
+      summary: get all student
+      description: gets all the student from database
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/StudentModel'
+
+definitions:
+  StudentModel:
+    description: Model describing student
+    properties:
+      name:
+        type: string
+        example: Atin Singh
+      age:
+        type: integer
+        format: int32
+      address:
+        type: object
+        $ref: '#/definitions/Address'
+
+  Address:
+    description: Address of the student
+    properties:
+      streetNo:
+        type: integer
+        format: int32
+        example: 5380
+      streetName:
+        type: string
+        maxLength: 100
+        minimum: 5
+        example: Bushelgrove circle
+      type:
+        enum: [PRIMARY, SECONDAY]
+
+  Error:
+    description: represent an Error
+    properties:
+      errorcode:
+        type: integer
+        description: error code
+        example: 404
+      systemId:
+        type: string
+        description: ID of system throwing the error
+        example: PAYMENT0938
+      description:
+        type: string
+        description: Description of the error
+

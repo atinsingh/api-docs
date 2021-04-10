@@ -3,10 +3,12 @@ package io.pragra.lms.lmsdemo.controller;
 import io.pragra.lms.lmsdemo.entitiy.Course;
 import io.pragra.lms.lmsdemo.service.CourseService;
 import lombok.Data;
+import lombok.var;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -17,10 +19,9 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        Optional<Course> course = service.getAllCourse().stream().findAny();
-        if(course.isPresent()) {
-            model.addAttribute("course", course.get());
-        }
+
+        List<Course> courses = service.getAllCourse();
+        model.addAttribute("cs", courses);
         return "index";
     }
 }
