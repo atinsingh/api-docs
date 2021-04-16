@@ -6,3 +6,7 @@ spring:
   web:
     resources:
       static-locations: classpath:templates/static
+
+git:
+  api:
+    user: https://api.github.com/users/{login}
